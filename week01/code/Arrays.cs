@@ -13,7 +13,19 @@ public static class Arrays
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
-        return []; // replace this return statement with your own
+        // PLAN:
+        // 1. Create a new array of doubles with the given length.
+        // 2. Use a loop to fill the array.
+        //    Each element at index i should be number * (i + 1).
+        // 3. Return the filled array.
+
+        double[] multiples = new double[length];  // Step 1
+        for (int i = 0; i < length; i++)          // Step 2
+        {
+            multiples[i] = number * (i + 1);
+        }
+        return multiples; 
+        
     }
 
     /// <summary>
@@ -29,5 +41,21 @@ public static class Arrays
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+
+        // PLAN:
+        // 1. Determine how many items to move: 'amount' items from the end go to the front.
+        // 2. Use GetRange to get the last 'amount' items.
+        // 3. Use GetRange to get the remaining items at the start.
+        // 4. Clear the original list.
+        // 5. Add the two ranges back in correct order (last part first, then first part).
+
+        // Step 2: Slice the list into two parts
+        List<int> lastPart = data.GetRange(data.Count - amount, amount);
+        List<int> firstPart = data.GetRange(0, data.Count - amount);
+
+        // Step 4: Clear and rebuild the list
+        data.Clear();
+        data.AddRange(lastPart);
+        data.AddRange(firstPart);
     }
 }
